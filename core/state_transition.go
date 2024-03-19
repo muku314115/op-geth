@@ -126,6 +126,7 @@ func toWordSize(size uint64) uint64 {
 
 // A Message contains the data derived from a single transaction that is relevant to state
 // processing.
+// TODO: CAN ADD A NEW FIELD FOR UPDATETX, MIGHT NOT BE REQUIRED, MUST BE TESTED
 type Message struct {
 	To            *common.Address
 	From          common.Address
@@ -388,6 +389,7 @@ func (st *StateTransition) preCheck() error {
 //
 // However if any consensus issue encountered, return the error directly with
 // nil evm execution result.
+// TODO: CAN ADD MINT PPS LOGIC HERE - EVENT CHANGES WOULD NOT BE CRUCIAL THEN
 func (st *StateTransition) TransitionDb() (*ExecutionResult, error) {
 	if mint := st.msg.Mint; mint != nil {
 		st.state.AddBalance(st.msg.From, mint)
